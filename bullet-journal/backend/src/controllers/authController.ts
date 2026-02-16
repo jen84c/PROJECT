@@ -32,9 +32,9 @@ export const register = async (req: Request, res: Response) => {
     const user = result.rows[0];
 
     const token = jwt.sign(
-      { id: user.id, email: user.email },
-      process.env.JWT_SECRET || 'your_jwt_secret_here',
-      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+       { userId: user.id, email: user.email },
+       JWT_SECRET,
+       { expiresIn: JWT_EXPIRES_IN } 
     );
 
     res.status(201).json({
@@ -76,9 +76,9 @@ export const login = async (req: Request, res: Response) => {
     }
 
     const token = jwt.sign(
-      { id: user.id, email: user.email, teamId: user.team_id },
-      process.env.JWT_SECRET || 'your_jwt_secret_here',
-      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+      { userId: user.id, email: user.email },
+     JWT_SECRET,  
+      { expiresIn: JWT_EXPIRES_IN } 
     );
 
     res.json({
