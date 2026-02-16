@@ -3,6 +3,17 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import pool from '../config/database';
 
+import jwt from 'jsonwebtoken';
+
+// Read from environment
+const JWT_SECRET = process.env.JWT_SECRET ?? '';
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN ?? '7d';
+
+// Fail fast if the secret is missing
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET is missing. Add it to your .env');
+}
+
 export const register = async (req: Request, res: Response) => {
   try {
     const { email, password, name } = req.body;
