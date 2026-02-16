@@ -1,0 +1,10 @@
+{
+  "host": "localhost",
+  "port": 5432,
+  "database": "bullet_journal",
+  "user": "postgres",
+  "password": "postgres",
+  "driver": "pg",
+  "migrationsTable": "pgmigrations",
+  "dir": "database/migrations"
+}
